@@ -1,26 +1,148 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap");
 
+/* ─── SoulStudy Design Tokens ─────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Backgrounds */
+  --color-bg:          #1A1210;
+  --color-surface:     #2A2220;
+  --color-surface-2:   #332B29;
+
+  /* Brand */
+  --color-primary:     #C8674E;
+  --color-primary-hover: #D4735A;
+  --color-accent:      #D4A853;
+  --color-plum:        #8B6EA4;
+  --color-plum-deep:   #3D2B50;
+
+  /* Text */
+  --color-text:        #F5F0E8;
+  --color-muted:       #B8A99A;
+  --color-subtle:      #7A6A60;
+
+  /* Semantic */
+  --color-success:     #7A9E7E;
+  --color-error:       #C8674E;
+
+  /* Typography */
+  --font-serif:        'Playfair Display', Georgia, serif;
+  --font-sans:         'Inter', system-ui, sans-serif;
+  --font-mono:         'Space Mono', monospace;
+
+  /* Transitions */
+  --transition:        300ms ease-in-out;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background:  var(--color-bg);
+  --color-foreground:  var(--color-text);
+  --font-sans:         var(--font-sans);
+  --font-mono:         var(--font-mono);
+  --font-serif:        var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ─────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-text);
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-subtle);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* ─── Utility Classes ─────────────────────────────────────────── */
+.font-serif  { font-family: var(--font-serif); }
+.font-mono   { font-family: var(--font-mono); }
+
+.text-primary  { color: var(--color-primary); }
+.text-accent   { color: var(--color-accent); }
+.text-plum     { color: var(--color-plum); }
+.text-muted    { color: var(--color-muted); }
+.text-subtle   { color: var(--color-subtle); }
+
+.bg-surface    { background-color: var(--color-surface); }
+.bg-surface-2  { background-color: var(--color-surface-2); }
+
+/* Warm gradient — terracotta to plum */
+.gradient-warm {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-plum) 100%);
+}
+
+/* Gold shimmer for accent text */
+.text-gold {
+  background: linear-gradient(90deg, var(--color-accent), #F0C070, var(--color-accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Sparkle divider — used between sections */
+.divider-sparkle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-accent);
+}
+.divider-sparkle::before,
+.divider-sparkle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.4;
+}
+
+/* Mudcloth pattern overlay */
+.mudcloth-bg {
+  position: relative;
+}
+.mudcloth-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 20px,
+      rgba(212, 168, 83, 0.03) 20px,
+      rgba(212, 168, 83, 0.03) 21px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 20px,
+      rgba(212, 168, 83, 0.03) 20px,
+      rgba(212, 168, 83, 0.03) 21px
+    );
+  pointer-events: none;
+  z-index: 0;
 }
