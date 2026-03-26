@@ -7,7 +7,6 @@ import {
   updateDoc,
   query,
   where,
-  orderBy,
   serverTimestamp,
   Timestamp,
 } from 'firebase/firestore'
@@ -74,18 +73,19 @@ export async function getUserConversations(userId: string): Promise<Conversation
   const q = query(
     collection(db, 'conversations'),
     where('userId', '==', userId),
-    orderBy('updatedAt', 'desc'),
   )
 
   const snap = await getDocs(q)
-  return snap.docs.map(d => {
-    const data = d.data()
-    return {
-      id:        d.id,
-      userId:    data.userId,
-      messages:  data.messages ?? [],
-      createdAt: toISO(data.createdAt),
-      updatedAt: toISO(data.updatedAt),
-    }
-  })
+  return snap.docs
+    .map(d => {
+      const data = d.data()
+      return {
+        id:        d.id,
+        userId:    data.userId,
+        messages:  data.messages ?? [],
+        createdAt: toISO(data.createdAt),
+        updatedAt: toISO(data.updatedAt),
+      }
+    })
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
 }
