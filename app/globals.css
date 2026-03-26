@@ -23,11 +23,6 @@
   --color-success:     #7A9E7E;
   --color-error:       #C8674E;
 
-  /* Typography */
-  --font-serif:        'Fraunces', Georgia, serif;
-  --font-sans:         'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-mono:         'Space Mono', monospace;
-
   /* Transitions */
   --transition:        300ms ease-in-out;
 }
@@ -35,9 +30,6 @@
 @theme inline {
   --color-background:  var(--color-bg);
   --color-foreground:  var(--color-text);
-  --font-sans:         var(--font-sans);
-  --font-mono:         var(--font-mono);
-  --font-serif:        var(--font-serif);
 }
 
 /* ─── Base Styles ─────────────────────────────────────────────── */
