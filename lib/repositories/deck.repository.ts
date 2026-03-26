@@ -6,7 +6,6 @@ import {
   getDocs,
   query,
   where,
-  orderBy,
   serverTimestamp,
   Timestamp,
 } from 'firebase/firestore'
@@ -58,18 +57,19 @@ export async function getUserDecks(userId: string): Promise<Deck[]> {
   const q = query(
     collection(db, 'decks'),
     where('userId', '==', userId),
-    orderBy('createdAt', 'desc'),
   )
 
   const snap = await getDocs(q)
-  return snap.docs.map(d => {
-    const data = d.data()
-    return {
-      id:        d.id,
-      userId:    data.userId,
-      topic:     data.topic,
-      cards:     data.cards ?? [],
-      createdAt: toISO(data.createdAt),
-    }
-  })
+  return snap.docs
+    .map(d => {
+      const data = d.data()
+      return {
+        id:        d.id,
+        userId:    data.userId,
+        topic:     data.topic,
+        cards:     data.cards ?? [],
+        createdAt: toISO(data.createdAt),
+      }
+    })
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
 }
