@@ -1,0 +1,19 @@
+# SoulStudy — Development Docker Compose
+# Usage:
+#   docker-compose up        — start dev server with hot reload
+#   docker-compose down      — stop and remove containers
+#   docker-compose up --build — rebuild image before starting
+# Requires .env.local in project root with Firebase + Anthropic keys.
+
+services:
+  soulstudy:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+    env_file:
+      - .env.local
