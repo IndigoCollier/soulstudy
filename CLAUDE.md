@@ -55,3 +55,17 @@ app/ (routes) → lib/services → lib/repositories → Firestore
 See global `~/.claude/CLAUDE.md` for full Banyan Labs commit and branch conventions.
 Branch format: `feature/BL-XXX-short-description`
 Commit format: `feat(scope): description`
+
+## Private Documentation
+Internal project docs (not committed to GitHub) live in `docs/private/`:
+- `ProjectBrief.md` — project overview, users, scope
+- `TechSpecs.md` — full technical specifications and data models
+- `BuildPlan.md` — revised sprint plan with CI/CD and testing integrated
+- `UserStories.md` — development-ready user stories with acceptance criteria
+
+## Instruction Library
+Banyan Labs Claude instruction files live at:
+`C:\Users\indig\Desktop\DevShop\Banyan-Labs\CLAUDE\`
+These are already outside the git repo and are never committed.
+
+Key prompts used in this project are documented in `docs/private/BuildPlan.md`.
