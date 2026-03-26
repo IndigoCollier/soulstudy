@@ -14,10 +14,11 @@ import Card from '@/components/ui/Card'
 
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail]       = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError]       = useState('')
-  const [loading, setLoading]   = useState(false)
+  const [email, setEmail]           = useState('')
+  const [password, setPassword]     = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [error, setError]           = useState('')
+  const [loading, setLoading]       = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -45,7 +46,6 @@ export default function LoginPage() {
     <main className="min-h-screen flex items-center justify-center px-4 bg-[var(--color-bg)]">
       <div className="w-full max-w-sm">
 
-        {/* Logo / wordmark */}
         <div className="text-center mb-8">
           <h1 className="font-serif text-3xl font-semibold text-[var(--color-text)]">
             Soul<span className="text-[var(--color-primary)]">Study</span>
@@ -63,15 +63,31 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <Input
-              label="Password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              error={error || undefined}
-              required
-            />
+
+            <div className="relative">
+              <Input
+                label="Password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                error={error || undefined}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                className="absolute right-3 top-8 text-[var(--color-subtle)] hover:text-[var(--color-muted)] text-xs"
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
+
+            <div className="text-right -mt-2">
+              <Link href="/forgot-password" className="text-xs text-[var(--color-muted)] hover:text-[var(--color-accent)]">
+                Forgot password?
+              </Link>
+            </div>
 
             <Button type="submit" loading={loading} className="w-full mt-2">
               Sign in
