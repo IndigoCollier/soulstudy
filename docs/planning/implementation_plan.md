@@ -174,58 +174,68 @@ Do not carry unfinished work into the next day's branch.
 
 ---
 
-### ⬜ Day 2 — March 25 — UI Component Library
-**Branch:** `feature/BL-002-ui-components`
-- [ ] `components/ui/Button.tsx` — variants: primary, secondary, ghost
-- [ ] `components/ui/Card.tsx` — surface card with optional glow
-- [ ] `components/ui/Input.tsx` — styled text input with label
-- [ ] `components/ui/Badge.tsx` — pill label for categories/status
-- [ ] `components/ui/Modal.tsx` — overlay modal with backdrop
-- [ ] All components typed with TypeScript props
-- [ ] End of day: commit → push → PR → merge
+### ✅ Day 2 — March 25 — UI Component Library
+**Branch:** `feature/BL-002-ui-components` *(merged)*
+- [x] `components/ui/Button.tsx` — variants: primary, secondary, ghost
+- [x] `components/ui/Card.tsx` — surface card with optional glow
+- [x] `components/ui/Input.tsx` — styled text input with label + rightElement support
+- [x] `components/ui/Badge.tsx` — pill label for categories/status
+- [x] `components/ui/Modal.tsx` — overlay modal with backdrop
+- [x] All components typed with TypeScript props
+- [x] `__tests__/components/ui/Button.test.tsx` — 9 test cases passing
 
 ---
 
-### ⬜ Day 3 — March 26 — Firebase Auth
-**Branch:** `feature/BL-003-firebase-auth`
-- [ ] `lib/integrations/firebase.ts` — Firebase app init
-- [ ] `lib/models/user.ts` — User type + Zod schema
-- [ ] `hooks/useAuth.ts` — auth state hook
-- [ ] `app/(auth)/login/page.tsx` — login page UI
-- [ ] `app/(auth)/signup/page.tsx` — signup page UI
-- [ ] End of day: commit → push → PR → merge
+### ✅ Day 3 — March 26 — Firebase Auth + CI/CD + Docker
+**Branch:** `feature/BL-003-firebase-auth` *(merged)*
+- [x] `lib/integrations/firebase.ts` — Firebase app init with CI null guard
+- [x] `lib/models/user.ts` — User type + LoginSchema + SignUpSchema (Zod)
+- [x] `hooks/useAuth.ts` — auth state hook
+- [x] `app/(auth)/login/page.tsx` — login page UI
+- [x] `app/(auth)/signup/page.tsx` — signup page UI
+- [x] `app/(auth)/forgot-password/page.tsx` — password reset flow
+- [x] `.github/workflows/ci.yml` — GitHub Actions (lint, tsc, test, build)
+- [x] `Dockerfile` + `docker-compose.yml` — multi-stage build
+- [x] `__tests__/lib/models/user.test.ts` — 8 test cases passing
 
 ---
 
-### ⬜ Day 4 — March 27 — Layout + Auth Guard
-**Branch:** `feature/BL-004-layout`
-- [ ] `app/(dashboard)/layout.tsx` — auth guard (redirects if not logged in)
-- [ ] `components/layout/Sidebar.tsx` — nav links to all pages
-- [ ] `components/layout/Header.tsx` — top bar with user greeting
-- [ ] `components/layout/PageWrapper.tsx` — consistent page padding/structure
-- [ ] `app/(dashboard)/page.tsx` — dashboard shell (empty for now)
-- [ ] End of day: commit → push → PR → merge
+### ✅ Day 4 — March 26-27 — Layout + Auth Guard
+**Branch:** `feature/BL-004-layout` *(merged)*
+- [x] `app/(dashboard)/layout.tsx` — auth guard (redirects if not logged in)
+- [x] `app/(dashboard)/dashboard/page.tsx` — dashboard shell
+- [x] `components/layout/Sidebar.tsx` — nav links with active state
+- [x] `components/layout/Header.tsx` — time-based greeting + sign out
+- [x] `components/layout/PageWrapper.tsx` — consistent page padding/structure
+- [x] `app/page.tsx` — root redirect based on auth state
+- [x] `app/globals.css` — fixed Tailwind v4 + next/font Google Fonts conflict
+- [x] `__tests__/components/layout/DashboardLayout.test.tsx` — 3 auth guard tests
 
 ---
 
-### ⬜ Day 5 — March 28 — Askia Backend
-**Branch:** `feature/BL-005-askia-chat`
-- [ ] `lib/integrations/anthropic.ts` — Anthropic SDK client
+### ⬜ Day 5 — March 27 — Askia Backend
+**Branch:** `feature/BL-005-askia-backend`
+- [ ] `lib/models/chat.ts` — ChatMessage + Conversation Zod schemas
 - [ ] `lib/prompts/study-assistant.md` — Askia system prompt (SPD-focused, big sister tone)
-- [ ] `lib/services/chat.service.ts` — conversation orchestration
-- [ ] `app/api/chat/route.ts` — streaming chat API route
-- [ ] End of day: commit → push (do NOT merge yet, Day 6 continues this branch)
+- [ ] `lib/services/chat.service.ts` — build messages array, call Anthropic
+- [ ] `lib/repositories/conversation.repository.ts` — save/get Firestore conversations
+- [ ] `app/api/chat/route.ts` — streaming POST handler
+- [ ] `__tests__/lib/models/chat.test.ts` — schema tests
+- [ ] End of day: commit → push → PR → merge
 
 ---
 
-### ⬜ Day 6 — March 29 — Askia Chat UI
-**Branch:** `feature/BL-005-askia-chat` *(continued from Day 5)*
-- [ ] `components/chat/ChatWindow.tsx` — message thread container
+### ⬜ Day 6 — March 28 — Askia Chat UI + Mobile Responsiveness
+**Branch:** `feature/BL-006-askia-chat-ui`
+- [ ] `components/chat/ChatWindow.tsx` — scrollable message thread
 - [ ] `components/chat/MessageBubble.tsx` — user + Askia message styles
 - [ ] `components/chat/ChatInput.tsx` — input bar with send button
+- [ ] `components/chat/StreamingIndicator.tsx` — typing animation
 - [ ] `hooks/useChat.ts` — chat state + streaming handler
 - [ ] `app/(dashboard)/chat/page.tsx` — full chat page
-- [ ] Conversation history saved to Firestore
+- [ ] Sidebar hidden on mobile, bottom nav shown on small screens
+- [ ] Layout tested at 375px / 768px / 1280px
+- [ ] Conversation history loaded from Firestore
 - [ ] End of day: commit → push → PR → merge
 
 ---
@@ -352,11 +362,12 @@ Use these days to catch up on anything that slipped or to record the 5-10 min wa
 
 ```
 main
-├── feature/BL-001-project-setup   Day 1  ✓ MERGED
-├── feature/BL-002-ui-components   Day 2  ← NEXT
-├── feature/BL-003-firebase-auth   Day 3
-├── feature/BL-004-layout          Day 4
-├── feature/BL-005-askia-chat      Days 5-6
+├── feature/BL-001-project-setup   Day 1   ✓ MERGED
+├── feature/BL-002-ui-components   Day 2   ✓ MERGED
+├── feature/BL-003-firebase-auth   Day 3   ✓ MERGED
+├── feature/BL-004-layout          Day 4   ✓ MERGED
+├── feature/BL-005-askia-backend   Day 5   ← NEXT
+├── feature/BL-006-askia-chat-ui   Day 6
 ├── feature/BL-006-flashcards      Day 7
 ├── feature/BL-007-quiz            Day 8
 ├── feature/BL-008-dashboard       Day 9
@@ -384,7 +395,10 @@ Commit format: `feat(scope): description` — see global CLAUDE.md for full stan
 
 | Date | Work Done | Next |
 |------|-----------|------|
-| 2026-03-24 | Project initialized, dependencies installed, design system configured, GitHub repo set up, `BL-001` merged | `feature/BL-002-firebase-auth` — UI components + Firebase Auth |
+| 2026-03-24 | Project initialized, dependencies installed, design system configured, GitHub repo set up, `BL-001` merged | UI component library |
+| 2026-03-25 | UI component library (Button, Card, Input, Badge, Modal), Button tests, `BL-002` merged | Firebase Auth |
+| 2026-03-26 | Firebase Auth, forgot password, CI/CD (GitHub Actions), Docker, auth tests, `BL-003` merged | Layout + auth guard |
+| 2026-03-26-27 | Dashboard layout, auth guard, Sidebar, Header, PageWrapper, root redirect, Tailwind/font CSS fix, `BL-004` merged | Askia backend |
 
 ---
 

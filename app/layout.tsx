@@ -1,25 +1,5 @@
 import type { Metadata } from 'next'
-import { Fraunces, Plus_Jakarta_Sans, Space_Mono } from 'next/font/google'
 import './globals.css'
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-serif',
-  display: 'swap',
-})
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-})
-
-const spaceMono = Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-mono',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'SoulStudy',
@@ -28,7 +8,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${plusJakartaSans.variable} ${spaceMono.variable} h-full antialiased`}>
+    <html lang="en" className="h-full antialiased">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   )

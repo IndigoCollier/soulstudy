@@ -23,6 +23,11 @@
   --color-success:     #7A9E7E;
   --color-error:       #C8674E;
 
+  /* Typography */
+  --font-serif:        'Fraunces', Georgia, serif;
+  --font-sans:         'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono:         'Space Mono', monospace;
+
   /* Transitions */
   --transition:        300ms ease-in-out;
 }
