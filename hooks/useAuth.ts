@@ -10,13 +10,13 @@ interface AuthState {
 }
 
 export function useAuth(): AuthState {
-  const [state, setState] = useState<AuthState>({ user: null, loading: true })
+  const [state, setState] = useState<AuthState>({
+    user: null,
+    loading: auth !== null,
+  })
 
   useEffect(() => {
-    if (!auth) {
-      setState({ user: null, loading: false })
-      return
-    }
+    if (!auth) return
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setState({ user, loading: false })
     })
