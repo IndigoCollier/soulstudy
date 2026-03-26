@@ -23,7 +23,7 @@ export default function FlashcardsPage() {
   if (activeDeck) {
     return (
       <PageWrapper>
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-lg mx-auto w-full">
           <FlashcardDeck deck={activeDeck} onDone={() => setActiveDeck(null)} />
         </div>
       </PageWrapper>
@@ -40,7 +40,7 @@ export default function FlashcardsPage() {
         <p className="text-sm text-[var(--color-muted)] mb-4">
           Enter any SPD topic and Askia will create 10 flashcards for you.
         </p>
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             value={topic}
@@ -59,7 +59,7 @@ export default function FlashcardsPage() {
             onClick={handleGenerate}
             disabled={isGenerating || !topic.trim()}
             className={[
-              'rounded-xl bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-white',
+              'shrink-0 rounded-xl bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-white',
               'hover:bg-[var(--color-primary-hover)] transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed',
             ].join(' ')}

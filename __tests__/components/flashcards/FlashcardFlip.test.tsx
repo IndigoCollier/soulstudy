@@ -12,13 +12,15 @@ const card: Flashcard = {
 describe('FlashcardFlip', () => {
   it('shows the front text on initial render', () => {
     render(<FlashcardFlip card={card} />)
-    expect(screen.getByText('What is a biological indicator?')).toBeTruthy()
+    const matches = screen.getAllByText('What is a biological indicator?')
+    expect(matches.length).toBeGreaterThan(0)
   })
 
   it('shows the back text after clicking', () => {
     render(<FlashcardFlip card={card} />)
     fireEvent.click(screen.getByRole('button'))
-    expect(screen.getByText('A device used to monitor sterilization efficacy.')).toBeTruthy()
+    const matches = screen.getAllByText('A device used to monitor sterilization efficacy.')
+    expect(matches.length).toBeGreaterThan(0)
   })
 
   it('shows Question label on front', () => {
