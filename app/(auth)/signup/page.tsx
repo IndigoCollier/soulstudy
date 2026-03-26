@@ -30,6 +30,7 @@ export default function SignUpPage() {
       return
     }
 
+    if (!auth) return
     setLoading(true)
     try {
       const credential = await createUserWithEmailAndPassword(auth, email, password)

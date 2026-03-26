@@ -29,6 +29,7 @@ export default function LoginPage() {
       return
     }
 
+    if (!auth) return
     setLoading(true)
     try {
       await signInWithEmailAndPassword(auth, email, password)
