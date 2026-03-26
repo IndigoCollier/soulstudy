@@ -14,15 +14,22 @@ import Card from '@/components/ui/Card'
 
 export default function SignUpPage() {
   const router = useRouter()
-  const [name, setName]         = useState('')
-  const [email, setEmail]       = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError]       = useState('')
-  const [loading, setLoading]   = useState(false)
+  const [name, setName]               = useState('')
+  const [email, setEmail]             = useState('')
+  const [password, setPassword]       = useState('')
+  const [confirmPassword, setConfirm] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [error, setError]             = useState('')
+  const [loading, setLoading]         = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.')
+      return
+    }
 
     const result = SignUpSchema.safeParse({ name, email, password })
     if (!result.success) {
@@ -51,7 +58,6 @@ export default function SignUpPage() {
     <main className="min-h-screen flex items-center justify-center px-4 bg-[var(--color-bg)]">
       <div className="w-full max-w-sm">
 
-        {/* Logo / wordmark */}
         <div className="text-center mb-8">
           <h1 className="font-serif text-3xl font-semibold text-[var(--color-text)]">
             Soul<span className="text-[var(--color-primary)]">Study</span>
@@ -77,12 +83,31 @@ export default function SignUpPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+
             <Input
               label="Password"
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="At least 8 characters"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
+              rightElement={
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="text-xs text-[var(--color-subtle)] hover:text-[var(--color-muted)]"
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </button>
+              }
+            />
+
+            <Input
+              label="Confirm password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Re-enter your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirm(e.target.value)}
               error={error || undefined}
               required
             />
