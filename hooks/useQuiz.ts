@@ -1,21 +1,61 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { saveQuizResult } from '@/lib/repositories/quiz.repository'
 import type { Question } from '@/lib/models/quiz'
 
 type QuizState = 'idle' | 'loading' | 'active' | 'results'
 
+const STORAGE_KEY = 'soulstudy_quiz_progress'
+
+interface QuizProgress {
+  topic:        string
+  questions:    Question[]
+  currentIndex: number
+  answers:      number[]
+}
+
+function loadProgress(): QuizProgress | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
+function saveProgress(progress: QuizProgress) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
+  } catch { /* storage full or unavailable */ }
+}
+
+function clearProgress() {
+  try {
+    localStorage.removeItem(STORAGE_KEY)
+  } catch { /* ignore */ }
+}
+
 export function useQuiz() {
   const { user } = useAuth()
-  const [state, setState]           = useState<QuizState>('idle')
-  const [topic, setTopic]           = useState('')
-  const [questions, setQuestions]   = useState<Question[]>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [answers, setAnswers]       = useState<number[]>([])
+
+  const saved = typeof window !== 'undefined' ? loadProgress() : null
+
+  const [state, setState]           = useState<QuizState>(saved ? 'active' : 'idle')
+  const [topic, setTopic]           = useState(saved?.topic ?? '')
+  const [questions, setQuestions]   = useState<Question[]>(saved?.questions ?? [])
+  const [currentIndex, setCurrentIndex] = useState(saved?.currentIndex ?? 0)
+  const [answers, setAnswers]       = useState<number[]>(saved?.answers ?? [])
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [error, setError]           = useState<string | null>(null)
+
+  // Keep localStorage in sync whenever active quiz state changes
+  useEffect(() => {
+    if (state === 'active' && questions.length > 0) {
+      saveProgress({ topic, questions, currentIndex, answers })
+    }
+  }, [state, topic, questions, currentIndex, answers])
 
   const score = answers.filter((ans, i) => ans === questions[i]?.correctIndex).length
 
@@ -35,6 +75,7 @@ export function useQuiz() {
       if (!res.ok) throw new Error('Failed to generate quiz')
 
       const data = await res.json()
+      clearProgress()
       setQuestions(data.questions)
       setAnswers([])
       setCurrentIndex(0)
@@ -63,6 +104,7 @@ export function useQuiz() {
     } else {
       // Quiz finished — save result
       const finalScore = newAnswers.filter((ans, i) => ans === questions[i]?.correctIndex).length
+      clearProgress()
       setState('results')
 
       if (user) {
@@ -78,6 +120,7 @@ export function useQuiz() {
   }
 
   function reset() {
+    clearProgress()
     setState('idle')
     setTopic('')
     setQuestions([])
