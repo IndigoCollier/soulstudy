@@ -64,24 +64,24 @@ export default function LoginPage() {
               required
             />
 
-            <div className="relative">
-              <Input
-                label="Password"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                error={error || undefined}
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword((v) => !v)}
-                className="absolute right-3 top-8 text-[var(--color-subtle)] hover:text-[var(--color-muted)] text-xs"
-              >
-                {showPassword ? 'Hide' : 'Show'}
-              </button>
-            </div>
+            <Input
+              label="Password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={error || undefined}
+              required
+              rightElement={
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="text-xs text-[var(--color-subtle)] hover:text-[var(--color-muted)]"
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </button>
+              }
+            />
 
             <div className="text-right -mt-2">
               <Link href="/forgot-password" className="text-xs text-[var(--color-muted)] hover:text-[var(--color-accent)]">

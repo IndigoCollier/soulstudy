@@ -84,24 +84,23 @@ export default function SignUpPage() {
               required
             />
 
-            {/* Password with show/hide toggle */}
-            <div className="relative">
-              <Input
-                label="Password"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="At least 8 characters"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword((v) => !v)}
-                className="absolute right-3 top-8 text-[var(--color-subtle)] hover:text-[var(--color-muted)] text-xs"
-              >
-                {showPassword ? 'Hide' : 'Show'}
-              </button>
-            </div>
+            <Input
+              label="Password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="At least 8 characters"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              rightElement={
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="text-xs text-[var(--color-subtle)] hover:text-[var(--color-muted)]"
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </button>
+              }
+            />
 
             <Input
               label="Confirm password"
