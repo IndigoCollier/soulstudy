@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, HTMLAttributes } from 'react'
+import { useEffect, useRef } from 'react'
 
 interface ModalProps {
   open: boolean

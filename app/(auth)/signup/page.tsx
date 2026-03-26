@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -28,6 +30,7 @@ export default function SignUpPage() {
       return
     }
 
+    if (!auth) return
     setLoading(true)
     try {
       const credential = await createUserWithEmailAndPassword(auth, email, password)
