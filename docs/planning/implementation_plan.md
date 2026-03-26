@@ -156,54 +156,151 @@ app/ routes → lib/services → lib/repositories → Firestore
 
 ---
 
-## Features
+## Sprint Schedule — Day by Day
 
-### Phase 1 — Foundation
-- [ ] Fresh Next.js project initialized
-- [ ] Firebase configured (Auth + Firestore)
-- [ ] Tailwind theme tokens defined (colors, fonts, spacing)
-- [ ] Base UI component library (Button, Card, Input, Badge, Modal)
-- [ ] Firebase Auth — signup, login, logout
-- [ ] Auth guard on dashboard routes
-- [ ] Sidebar + layout shell
+Each day has a clear scope. At the end of each day: **commit → push → PR → merge → delete branch**.
+Do not carry unfinished work into the next day's branch.
 
-### Phase 2 — Askia (AI Chat)
-- [ ] Anthropic SDK integration (`lib/integrations/anthropic.ts`)
-- [ ] Askia system prompt (warm, stern, SPD-focused)
-- [ ] Streaming chat API route (`app/api/chat/route.ts`)
-- [ ] Chat service (`lib/services/chat.service.ts`)
-- [ ] Chat UI — ChatWindow, MessageBubble, ChatInput components
+---
+
+### ✅ Day 1 — March 24 — Project Foundation
+**Branch:** `feature/BL-001-project-setup` *(merged)*
+- [x] Fresh Next.js 15 project initialized
+- [x] Firebase + Anthropic SDK + Zod + Vitest installed
+- [x] SoulStudy design system tokens in `app/globals.css`
+- [x] `.env.local` configured (Firebase + Anthropic)
+- [x] CLAUDE.md, `.env.example`, planning docs added
+- [x] GitHub repo live at `github.com/IndigoCollier/soulstudy`
+
+---
+
+### ⬜ Day 2 — March 25 — UI Component Library
+**Branch:** `feature/BL-002-ui-components`
+- [ ] `components/ui/Button.tsx` — variants: primary, secondary, ghost
+- [ ] `components/ui/Card.tsx` — surface card with optional glow
+- [ ] `components/ui/Input.tsx` — styled text input with label
+- [ ] `components/ui/Badge.tsx` — pill label for categories/status
+- [ ] `components/ui/Modal.tsx` — overlay modal with backdrop
+- [ ] All components typed with TypeScript props
+- [ ] End of day: commit → push → PR → merge
+
+---
+
+### ⬜ Day 3 — March 26 — Firebase Auth
+**Branch:** `feature/BL-003-firebase-auth`
+- [ ] `lib/integrations/firebase.ts` — Firebase app init
+- [ ] `lib/models/user.ts` — User type + Zod schema
+- [ ] `hooks/useAuth.ts` — auth state hook
+- [ ] `app/(auth)/login/page.tsx` — login page UI
+- [ ] `app/(auth)/signup/page.tsx` — signup page UI
+- [ ] End of day: commit → push → PR → merge
+
+---
+
+### ⬜ Day 4 — March 27 — Layout + Auth Guard
+**Branch:** `feature/BL-004-layout`
+- [ ] `app/(dashboard)/layout.tsx` — auth guard (redirects if not logged in)
+- [ ] `components/layout/Sidebar.tsx` — nav links to all pages
+- [ ] `components/layout/Header.tsx` — top bar with user greeting
+- [ ] `components/layout/PageWrapper.tsx` — consistent page padding/structure
+- [ ] `app/(dashboard)/page.tsx` — dashboard shell (empty for now)
+- [ ] End of day: commit → push → PR → merge
+
+---
+
+### ⬜ Day 5 — March 28 — Askia Backend
+**Branch:** `feature/BL-005-askia-chat`
+- [ ] `lib/integrations/anthropic.ts` — Anthropic SDK client
+- [ ] `lib/prompts/study-assistant.md` — Askia system prompt (SPD-focused, big sister tone)
+- [ ] `lib/services/chat.service.ts` — conversation orchestration
+- [ ] `app/api/chat/route.ts` — streaming chat API route
+- [ ] End of day: commit → push (do NOT merge yet, Day 6 continues this branch)
+
+---
+
+### ⬜ Day 6 — March 29 — Askia Chat UI
+**Branch:** `feature/BL-005-askia-chat` *(continued from Day 5)*
+- [ ] `components/chat/ChatWindow.tsx` — message thread container
+- [ ] `components/chat/MessageBubble.tsx` — user + Askia message styles
+- [ ] `components/chat/ChatInput.tsx` — input bar with send button
+- [ ] `hooks/useChat.ts` — chat state + streaming handler
+- [ ] `app/(dashboard)/chat/page.tsx` — full chat page
 - [ ] Conversation history saved to Firestore
+- [ ] End of day: commit → push → PR → merge
 
-### Phase 3 — Flashcards
-- [ ] Flashcard + Deck data models (Zod schemas)
-- [ ] Firestore repository — CRUD for decks
-- [ ] AI flashcard generation (Askia generates cards from a topic)
-- [ ] FlashCard flip animation component
-- [ ] Deck management UI
+---
 
-### Phase 4 — Quiz Mode
-- [ ] Quiz data model
-- [ ] AI quiz generation (multiple choice, from SPD topics)
-- [ ] Quiz flow UI — question → answer → result
-- [ ] Score saved to Firestore
-- [ ] Quiz history on dashboard
+### ⬜ Day 7 — March 30 — Flashcards
+**Branch:** `feature/BL-006-flashcards`
+- [ ] `lib/models/flashcard.ts` — Flashcard + Deck types + Zod schemas
+- [ ] `lib/repositories/deck.repository.ts` — Firestore CRUD for decks
+- [ ] `lib/services/flashcard.service.ts` — deck logic + AI generation
+- [ ] `app/api/flashcards/route.ts` — AI flashcard generation endpoint
+- [ ] `components/flashcards/FlashCard.tsx` — flip animation card
+- [ ] `components/flashcards/DeckList.tsx` — list of saved decks
+- [ ] `app/(dashboard)/flashcards/page.tsx` — flashcards page
+- [ ] End of day: commit → push → PR → merge
 
-### Phase 5 — Dashboard
-- [ ] Personalized greeting (time of day + user name)
-- [ ] Daily study quote (Afrocentric/motivational)
-- [ ] Study stats — streak, quizzes taken, flashcards reviewed
-- [ ] Quick action cards
+---
 
-### Phase 6 — Infrastructure
-- [ ] Dockerfile (production)
-- [ ] docker-compose.yml (development)
-- [ ] GitHub Actions CI — ESLint, Vitest, build check
-- [ ] Unit tests — services + critical utils
-- [ ] Component tests — at least one (Button or Card)
-- [ ] README with setup instructions + architecture overview
-- [ ] CLAUDE.md with project context
-- [ ] Deploy to Vercel
+### ⬜ Day 8 — March 31 — Quiz Mode
+**Branch:** `feature/BL-007-quiz`
+- [ ] `lib/models/quiz.ts` — Quiz + Question types + Zod schemas
+- [ ] `lib/repositories/quiz.repository.ts` — save/load quiz history
+- [ ] `lib/services/quiz.service.ts` — quiz state + scoring logic
+- [ ] `app/api/quiz/route.ts` — AI quiz generation endpoint
+- [ ] `components/quiz/QuizQuestion.tsx` — multiple choice question UI
+- [ ] `components/quiz/QuizResult.tsx` — score summary screen
+- [ ] `components/quiz/ProgressBar.tsx` — question progress indicator
+- [ ] `app/(dashboard)/quiz/page.tsx` — quiz page
+- [ ] End of day: commit → push → PR → merge
+
+---
+
+### ⬜ Day 9 — April 1 — Dashboard
+**Branch:** `feature/BL-008-dashboard`
+- [ ] `app/(dashboard)/page.tsx` — full dashboard (replaces shell from Day 4)
+- [ ] Personalized greeting by time of day + user name
+- [ ] Daily Afrocentric/motivational quote
+- [ ] Study stats — quizzes taken, flashcards reviewed, streak
+- [ ] Quick action cards linking to chat, flashcards, quiz
+- [ ] End of day: commit → push → PR → merge
+
+---
+
+### ⬜ Day 10 — April 2 — Docker
+**Branch:** `feature/BL-009-docker`
+- [ ] `Dockerfile` — multi-stage production build
+- [ ] `docker-compose.yml` — local development setup
+- [ ] `.dockerignore` — exclude node_modules, .next, .env files
+- [ ] Test: `docker build` completes, `docker-compose up` runs the app
+- [ ] End of day: commit → push → PR → merge
+
+---
+
+### ⬜ Day 11 — April 3 — CI/CD + Tests
+**Branch:** `feature/BL-010-cicd-tests`
+- [ ] `.github/workflows/ci.yml` — lint + test + build on every push
+- [ ] Unit tests for `chat.service.ts` and `quiz.service.ts`
+- [ ] Component test for `Button.tsx` or `Card.tsx`
+- [ ] Verify all tests pass locally with `npm test`
+- [ ] End of day: commit → push → PR → merge
+
+---
+
+### ⬜ Day 12 — April 4 — README + Deploy
+**Branch:** `feature/BL-011-docs-deploy`
+- [ ] `README.md` — setup instructions, architecture overview, screenshots, Docker commands
+- [ ] Deploy to Vercel — connect GitHub repo, set env vars in Vercel dashboard
+- [ ] Add live URL to README
+- [ ] Final review of all capstone requirements checklist
+- [ ] End of day: commit → push → PR → merge
+
+---
+
+### ⬜ Days 13-14 — April 5-6 — Buffer
+**No branch** — reserved for polish, bug fixes, and video demo prep.
+Use these days to catch up on anything that slipped or to record the 5-10 min walkthrough video.
 
 ---
 
@@ -254,15 +351,18 @@ app/ routes → lib/services → lib/repositories → Firestore
 ## Git Branch Strategy
 
 ```
-main                    # production — only merged PRs
-├── feature/BL-001-project-setup
-├── feature/BL-002-firebase-auth
-├── feature/BL-003-ui-components
-├── feature/BL-004-askia-chat
-├── feature/BL-005-flashcards
-├── feature/BL-006-quiz-mode
-├── feature/BL-007-dashboard
-└── feature/BL-008-docker-cicd
+main
+├── feature/BL-001-project-setup   Day 1  ✓ MERGED
+├── feature/BL-002-ui-components   Day 2  ← NEXT
+├── feature/BL-003-firebase-auth   Day 3
+├── feature/BL-004-layout          Day 4
+├── feature/BL-005-askia-chat      Days 5-6
+├── feature/BL-006-flashcards      Day 7
+├── feature/BL-007-quiz            Day 8
+├── feature/BL-008-dashboard       Day 9
+├── feature/BL-009-docker          Day 10
+├── feature/BL-010-cicd-tests      Day 11
+└── feature/BL-011-docs-deploy     Day 12
 ```
 
 Commit format: `feat(scope): description` — see global CLAUDE.md for full standards.
@@ -271,12 +371,20 @@ Commit format: `feat(scope): description` — see global CLAUDE.md for full stan
 
 ## Deliverables Checklist
 
-- [ ] GitHub repository with clean commit history
+- [x] GitHub repository with clean commit history ✓ (started)
 - [ ] Dockerfile and docker-compose.yml with documentation
 - [ ] Live deployed application (Vercel)
 - [ ] Comprehensive README with screenshots, setup instructions, architecture overview
 - [ ] CLAUDE.md documenting project for AI assistants
 - [ ] Video demo (5-10 minutes) walking through the app and code structure
+
+---
+
+## Session Log
+
+| Date | Work Done | Next |
+|------|-----------|------|
+| 2026-03-24 | Project initialized, dependencies installed, design system configured, GitHub repo set up, `BL-001` merged | `feature/BL-002-firebase-auth` — UI components + Firebase Auth |
 
 ---
 
