@@ -33,7 +33,7 @@
 }
 
 /* ─── Light Mode Tokens ───────────────────────────────────────── */
-[data-theme="light"] {
+html.light {
   --color-bg:          #FAF6F0;
   --color-surface:     #F0EAE2;
   --color-surface-2:   #E4DAD0;

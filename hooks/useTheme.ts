@@ -15,7 +15,9 @@ export function useTheme() {
 
   // Apply theme to <html> and persist whenever it changes
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
+    const root = document.documentElement
+    root.classList.remove('light', 'dark')
+    root.classList.add(theme)
     localStorage.setItem('soulstudy_theme', theme)
   }, [theme])
 
