@@ -1,5 +1,7 @@
 # SoulStudy
 
+![CI](https://github.com/IndigoCollier/soulstudy/actions/workflows/ci.yml/badge.svg)
+
 AI-powered study companion for Sterile Processing Technician (SPD) certification prep. Built with Next.js and powered by Claude — featuring streaming chat with Askia (your AI study guide), flashcard decks, adaptive quizzes, and a personal dashboard that tracks your progress.
 
 ## Tech Stack
