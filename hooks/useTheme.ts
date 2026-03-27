@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react'
 
 type Theme = 'dark' | 'light'
 
-export function useTheme() {
-  const [theme, setTheme] = useState<Theme>('dark')
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'dark'
+  const saved = localStorage.getItem('soulstudy_theme')
+  return saved === 'light' ? 'light' : 'dark'
+}
 
-  // Load saved preference on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('soulstudy_theme') as Theme | null
-    if (saved === 'light' || saved === 'dark') setTheme(saved)
-  }, [])
+export function useTheme() {
+  const [theme, setTheme] = useState<Theme>(getInitialTheme)
 
   // Apply theme to <html> and persist whenever it changes
   useEffect(() => {
