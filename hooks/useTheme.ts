@@ -37,9 +37,10 @@ export function useTheme() {
     return localStorage.getItem('soulstudy_theme') === 'light' ? 'light' : 'dark'
   })
 
-  // Apply CSS vars whenever theme changes — DOM only, no setState
+  // Apply CSS vars and persist whenever theme changes — DOM only, no setState
   useEffect(() => {
     applyTheme(theme)
+    localStorage.setItem('soulstudy_theme', theme)
   }, [theme])
 
   function toggle() {
