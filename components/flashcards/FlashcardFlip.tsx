@@ -15,8 +15,11 @@ export default function FlashcardFlip({ card }: FlashcardFlipProps) {
       className="relative w-full cursor-pointer"
       style={{ perspective: '1000px', minHeight: '220px' }}
       onClick={() => setFlipped(f => !f)}
+      onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setFlipped(f => !f)}
       role="button"
+      tabIndex={0}
       aria-label={flipped ? 'Show question' : 'Show answer'}
+      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] rounded-2xl"
     >
       {/* Invisible spacer so the container grows with content */}
       <div className="invisible px-5 py-6 md:px-8">

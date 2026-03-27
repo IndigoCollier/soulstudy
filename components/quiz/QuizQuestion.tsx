@@ -23,7 +23,7 @@ export default function QuizQuestion({
     const base = 'w-full text-left rounded-xl border px-4 py-3 text-sm transition-all duration-[var(--transition)] flex items-start gap-3'
 
     if (!answered) {
-      return `${base} border-[var(--color-surface-2)] text-[var(--color-text)] hover:border-[var(--color-primary)] hover:bg-[var(--color-surface-2)] cursor-pointer`
+      return `${base} border-[var(--color-surface-2)] text-[var(--color-text)] hover:border-[var(--color-primary)] hover:bg-[var(--color-surface-2)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]`
     }
 
     if (i === question.correctIndex) {

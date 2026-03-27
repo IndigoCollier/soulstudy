@@ -59,13 +59,13 @@ export default function QuizResults({ topic, score, total, onRetry, onNew }: Qui
       <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
         <button
           onClick={onRetry}
-          className="flex-1 rounded-xl border border-[var(--color-surface-2)] py-2.5 text-sm text-[var(--color-muted)] hover:border-[var(--color-muted)] transition-all"
+          className="flex-1 rounded-xl border border-[var(--color-surface-2)] py-2.5 text-sm text-[var(--color-muted)] hover:border-[var(--color-muted)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
         >
           Retry same topic
         </button>
         <button
           onClick={onNew}
-          className="flex-1 rounded-xl bg-[var(--color-primary)] py-2.5 text-sm text-white font-medium hover:bg-[var(--color-primary-hover)] transition-all"
+          className="flex-1 rounded-xl bg-[var(--color-primary)] py-2.5 text-sm text-white font-medium hover:bg-[var(--color-primary-hover)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
         >
           New quiz ✦
         </button>
