@@ -28,7 +28,7 @@ export default function FlashcardDeck({ deck, onDone }: FlashcardDeckProps) {
         </div>
         <button
           onClick={onDone}
-          className="text-xs text-[var(--color-subtle)] hover:text-[var(--color-muted)] transition-colors"
+          className="text-xs text-[var(--color-subtle)] hover:text-[var(--color-muted)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] rounded-lg px-1"
         >
           ✕ Close
         </button>
@@ -50,7 +50,7 @@ export default function FlashcardDeck({ deck, onDone }: FlashcardDeckProps) {
         <button
           onClick={() => setIndex(i => i - 1)}
           disabled={index === 0}
-          className="flex-1 rounded-xl border border-[var(--color-surface-2)] py-2.5 text-sm text-[var(--color-muted)] transition-all hover:border-[var(--color-muted)] disabled:opacity-30 disabled:cursor-not-allowed"
+          className="flex-1 rounded-xl border border-[var(--color-surface-2)] py-2.5 text-sm text-[var(--color-muted)] transition-all hover:border-[var(--color-muted)] disabled:opacity-30 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
         >
           ← Previous
         </button>
@@ -58,14 +58,14 @@ export default function FlashcardDeck({ deck, onDone }: FlashcardDeckProps) {
         {index < total - 1 ? (
           <button
             onClick={() => setIndex(i => i + 1)}
-            className="flex-1 rounded-xl bg-[var(--color-primary)] py-2.5 text-sm text-white transition-all hover:bg-[var(--color-primary-hover)]"
+            className="flex-1 rounded-xl bg-[var(--color-primary)] py-2.5 text-sm text-white transition-all hover:bg-[var(--color-primary-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
           >
             Next →
           </button>
         ) : (
           <button
             onClick={onDone}
-            className="flex-1 rounded-xl bg-[var(--color-accent)] py-2.5 text-sm text-[var(--color-bg)] font-medium transition-all hover:opacity-90"
+            className="flex-1 rounded-xl bg-[var(--color-accent)] py-2.5 text-sm text-[var(--color-bg)] font-medium transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
           >
             Done ✦
           </button>

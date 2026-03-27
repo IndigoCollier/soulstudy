@@ -21,9 +21,11 @@ export default function MobileNav() {
           <Link
             key={href}
             href={href}
+            aria-label={label}
             className={[
               'flex flex-1 flex-col items-center gap-0.5 py-3 text-xs font-medium',
               'transition-colors duration-[var(--transition)] min-h-[56px] justify-center',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-inset',
               active
                 ? 'text-[var(--color-primary)]'
                 : 'text-[var(--color-subtle)] hover:text-[var(--color-muted)]',

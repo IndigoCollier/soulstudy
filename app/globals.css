@@ -32,6 +32,26 @@
   --transition:        300ms ease-in-out;
 }
 
+/* ─── Light Mode Tokens ───────────────────────────────────────── */
+html.light {
+  --color-bg:          #FAF6F0;
+  --color-surface:     #F0EAE2;
+  --color-surface-2:   #E4DAD0;
+  --color-plum-deep:   #EDE5F5;
+
+  --color-text:        #1A1210;
+  --color-muted:       #5C4A3A;
+  --color-subtle:      #8A7A70;
+
+  --color-primary:     #C8674E;
+  --color-primary-hover: #B55A42;
+  --color-accent:      #C49843;
+  --color-plum:        #7A5E93;
+
+  --color-success:     #4A7A4E;
+  --color-error:       #B85540;
+}
+
 @theme inline {
   --color-background:  var(--color-bg);
   --color-foreground:  var(--color-text);

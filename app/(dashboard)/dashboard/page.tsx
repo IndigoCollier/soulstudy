@@ -49,7 +49,9 @@ function QuizHistoryRow({ result }: { result: QuizResult }) {
     <div className="border border-[var(--color-surface-2)] rounded-xl overflow-hidden">
       <button
         onClick={() => setExpanded(e => !e)}
-        className="w-full flex items-center justify-between px-4 py-3 hover:bg-[var(--color-surface-2)] transition-colors text-left"
+        aria-expanded={expanded}
+        aria-label={`${result.topic} — ${expanded ? 'collapse' : 'expand'} details`}
+        className="w-full flex items-center justify-between px-4 py-3 hover:bg-[var(--color-surface-2)] transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-inset"
       >
         <div className="flex flex-col gap-0.5 min-w-0">
           <span className="text-sm font-medium text-[var(--color-text)] truncate">{result.topic}</span>

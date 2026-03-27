@@ -44,6 +44,7 @@ export default function ChatInput({ onSend, disabled = false }: ChatInputProps) 
         onKeyDown={handleKeyDown}
         onInput={handleInput}
         disabled={disabled}
+        aria-label="Message Askia"
         placeholder="Ask Askia anything about SPD certification…"
         rows={1}
         className={[

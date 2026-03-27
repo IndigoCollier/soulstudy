@@ -34,6 +34,7 @@ export default function Sidebar() {
               className={[
                 'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium',
                 'transition-all duration-[var(--transition)]',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]',
                 active
                   ? 'bg-[var(--color-primary)] text-[var(--color-text)]'
                   : 'text-[var(--color-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface-2)]',
