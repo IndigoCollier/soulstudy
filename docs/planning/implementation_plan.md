@@ -213,93 +213,95 @@ Do not carry unfinished work into the next day's branch.
 
 ---
 
-### ⬜ Day 5 — March 27 — Askia Backend
-**Branch:** `feature/BL-005-askia-backend`
-- [ ] `lib/models/chat.ts` — ChatMessage + Conversation Zod schemas
-- [ ] `lib/prompts/study-assistant.md` — Askia system prompt (SPD-focused, big sister tone)
-- [ ] `lib/services/chat.service.ts` — build messages array, call Anthropic
-- [ ] `lib/repositories/conversation.repository.ts` — save/get Firestore conversations
-- [ ] `app/api/chat/route.ts` — streaming POST handler
-- [ ] `__tests__/lib/models/chat.test.ts` — schema tests
-- [ ] End of day: commit → push → PR → merge
+### ✅ Day 5 — March 27 — Askia Backend
+**Branch:** `feature/BL-005-askia-backend` *(merged)*
+- [x] `lib/models/chat.ts` — ChatMessage + Conversation Zod schemas
+- [x] `lib/prompts/study-assistant.md` — Askia system prompt (SPD-focused, big sister tone)
+- [x] `lib/services/chat.service.ts` — build messages array, call Anthropic streaming API
+- [x] `lib/repositories/conversation.repository.ts` — save/get Firestore conversations (client-side sort to avoid composite index)
+- [x] `app/api/chat/route.ts` — streaming POST handler with `X-Conversation-Id` header
+- [x] `__tests__/lib/models/chat.test.ts` — 12 schema tests passing
 
 ---
 
-### ⬜ Day 6 — March 28 — Askia Chat UI + Mobile Responsiveness
-**Branch:** `feature/BL-006-askia-chat-ui`
-- [ ] `components/chat/ChatWindow.tsx` — scrollable message thread
-- [ ] `components/chat/MessageBubble.tsx` — user + Askia message styles
-- [ ] `components/chat/ChatInput.tsx` — input bar with send button
-- [ ] `components/chat/StreamingIndicator.tsx` — typing animation
-- [ ] `hooks/useChat.ts` — chat state + streaming handler
-- [ ] `app/(dashboard)/chat/page.tsx` — full chat page
-- [ ] Sidebar hidden on mobile, bottom nav shown on small screens
-- [ ] Layout tested at 375px / 768px / 1280px
-- [ ] Conversation history loaded from Firestore
-- [ ] End of day: commit → push → PR → merge
+### ✅ Day 6 — March 28 — Askia Chat UI + Mobile Responsiveness
+**Branch:** `feature/BL-006-askia-chat-ui` *(merged)*
+- [x] `components/chat/ChatWindow.tsx` — scrollable message thread, auto-scroll to bottom
+- [x] `components/chat/MessageBubble.tsx` — user (right, terracotta) + Askia (left, surface-2, "Askia ✦" label)
+- [x] `components/chat/ChatInput.tsx` — auto-resizing textarea, Enter to send, Shift+Enter for newline
+- [x] `components/chat/StreamingIndicator.tsx` — three bouncing dots typing animation
+- [x] `hooks/useChat.ts` — streaming handler, localStorage conversation persistence, x-user-id header
+- [x] `app/(dashboard)/chat/page.tsx` — full chat page with "New conversation" button
+- [x] `components/layout/MobileNav.tsx` — fixed bottom nav (4 items), `md:hidden`
+- [x] `app/(dashboard)/layout.tsx` — sidebar `hidden md:flex`, `pb-16 md:pb-0` on main
+- [x] `__tests__/components/chat/MessageBubble.test.tsx` — 4 tests passing
 
 ---
 
-### ⬜ Day 7 — March 30 — Flashcards
-**Branch:** `feature/BL-006-flashcards`
-- [ ] `lib/models/flashcard.ts` — Flashcard + Deck types + Zod schemas
-- [ ] `lib/repositories/deck.repository.ts` — Firestore CRUD for decks
-- [ ] `lib/services/flashcard.service.ts` — deck logic + AI generation
-- [ ] `app/api/flashcards/route.ts` — AI flashcard generation endpoint
-- [ ] `components/flashcards/FlashCard.tsx` — flip animation card
-- [ ] `components/flashcards/DeckList.tsx` — list of saved decks
-- [ ] `app/(dashboard)/flashcards/page.tsx` — flashcards page
-- [ ] End of day: commit → push → PR → merge
+### ✅ Day 7 — March 30 — Flashcards
+**Branch:** `feature/BL-007-flashcards` *(merged)*
+- [x] `lib/models/flashcard.ts` — Flashcard + Deck types + Zod schemas
+- [x] `lib/repositories/deck.repository.ts` — Firestore CRUD, client-side sort
+- [x] `lib/services/flashcard.service.ts` — AI generation (10 cards), JSON parsing
+- [x] `app/api/flashcards/route.ts` — POST endpoint
+- [x] `components/flashcards/FlashcardFlip.tsx` — 3D CSS flip animation, responsive height
+- [x] `components/flashcards/FlashcardDeck.tsx` — progress bar, prev/next, Done button
+- [x] `hooks/useFlashcards.ts` — generate/load decks, error/loading state
+- [x] `app/(dashboard)/flashcards/page.tsx` — topic input (mobile stacked), deck grid, study mode
+- [x] `__tests__/lib/models/flashcard.test.ts` — 7 tests; `__tests__/components/flashcards/FlashcardFlip.test.tsx` — 4 tests
 
 ---
 
-### ⬜ Day 8 — March 31 — Quiz Mode
-**Branch:** `feature/BL-007-quiz`
-- [ ] `lib/models/quiz.ts` — Quiz + Question types + Zod schemas
-- [ ] `lib/repositories/quiz.repository.ts` — save/load quiz history
-- [ ] `lib/services/quiz.service.ts` — quiz state + scoring logic
-- [ ] `app/api/quiz/route.ts` — AI quiz generation endpoint
-- [ ] `components/quiz/QuizQuestion.tsx` — multiple choice question UI
-- [ ] `components/quiz/QuizResult.tsx` — score summary screen
-- [ ] `components/quiz/ProgressBar.tsx` — question progress indicator
-- [ ] `app/(dashboard)/quiz/page.tsx` — quiz page
-- [ ] End of day: commit → push → PR → merge
+### ✅ Day 8 — March 31 — Quiz Mode
+**Branch:** `feature/BL-008-quiz` *(ready to push)*
+- [x] `lib/models/quiz.ts` — Question + QuizResult + GenerateQuizRequest Zod schemas
+- [x] `lib/repositories/quiz.repository.ts` — save/load quiz history, client-side sort
+- [x] `lib/services/quiz.service.ts` — AI generation (10 MCQ with correctIndex 0-3 + explanation)
+- [x] `app/api/quiz/route.ts` — POST endpoint
+- [x] `components/quiz/QuizQuestion.tsx` — 4 options with ABCD labels, color-coded after selection, explanation shown on answer
+- [x] `components/quiz/QuizResults.tsx` — animated SVG score ring, pass/fail messaging, retry/new buttons
+- [x] `hooks/useQuiz.ts` — state machine (idle/loading/active/results), saves to Firestore on completion
+- [x] `hooks/useQuiz.ts` — localStorage persistence: quiz survives refresh and tab navigation
+- [x] `app/(dashboard)/quiz/page.tsx` — topic input, active quiz, results views
+- [x] `__tests__/lib/models/quiz.test.ts` — 9 tests; `__tests__/components/quiz/` — 9 tests
 
 ---
 
-### ⬜ Day 9 — April 1 — Dashboard
-**Branch:** `feature/BL-008-dashboard`
+### ⬜ Day 9 — Dashboard + Quiz History
+**Branch:** `feature/BL-009-dashboard`
 - [ ] `app/(dashboard)/page.tsx` — full dashboard (replaces shell from Day 4)
 - [ ] Personalized greeting by time of day + user name
 - [ ] Daily Afrocentric/motivational quote
-- [ ] Study stats — quizzes taken, flashcards reviewed, streak
+- [ ] Study stats — quizzes taken, best score, flashcard decks created
 - [ ] Quick action cards linking to chat, flashcards, quiz
+- [ ] **Quiz history panel** — list of past quiz results (topic, score, date) pulled from Firestore via `getUserQuizResults()`; click to expand question-level breakdown
 - [ ] End of day: commit → push → PR → merge
 
 ---
 
-### ⬜ Day 10 — April 2 — Docker
-**Branch:** `feature/BL-009-docker`
-- [ ] `Dockerfile` — multi-stage production build
-- [ ] `docker-compose.yml` — local development setup
-- [ ] `.dockerignore` — exclude node_modules, .next, .env files
-- [ ] Test: `docker build` completes, `docker-compose up` runs the app
+### ⬜ Day 10 — Docker
+**Branch:** `feature/BL-010-docker`
+- [ ] Review existing `Dockerfile` + `docker-compose.yml` (scaffolded Day 3)
+- [ ] Verify multi-stage production build works end-to-end
+- [ ] `.dockerignore` — confirm node_modules, .next, .env excluded
+- [ ] Test: `docker build` completes, `docker-compose up` runs the app locally
 - [ ] End of day: commit → push → PR → merge
 
 ---
 
-### ⬜ Day 11 — April 3 — CI/CD + Tests
-**Branch:** `feature/BL-010-cicd-tests`
-- [ ] `.github/workflows/ci.yml` — lint + test + build on every push
-- [ ] Unit tests for `chat.service.ts` and `quiz.service.ts`
-- [ ] Component test for `Button.tsx` or `Card.tsx`
-- [ ] Verify all tests pass locally with `npm test`
+### ⬜ Day 11 — Polish + Accessibility
+**Branch:** `feature/BL-011-polish`
+- [ ] Accessibility pass — focus rings, aria-labels on icon buttons, color contrast audit
+- [ ] Error boundaries on quiz and flashcard pages
+- [ ] Loading skeletons for deck list and quiz history
+- [ ] Final responsive QA at 375px / 768px / 1280px
+- [ ] Any remaining bug fixes from manual testing
 - [ ] End of day: commit → push → PR → merge
 
 ---
 
-### ⬜ Day 12 — April 4 — README + Deploy
-**Branch:** `feature/BL-011-docs-deploy`
+### ⬜ Day 12 — README + Deploy
+**Branch:** `feature/BL-012-docs-deploy`
 - [ ] `README.md` — setup instructions, architecture overview, screenshots, Docker commands
 - [ ] Deploy to Vercel — connect GitHub repo, set env vars in Vercel dashboard
 - [ ] Add live URL to README
@@ -362,18 +364,18 @@ Use these days to catch up on anything that slipped or to record the 5-10 min wa
 
 ```
 main
-├── feature/BL-001-project-setup   Day 1   ✓ MERGED
-├── feature/BL-002-ui-components   Day 2   ✓ MERGED
-├── feature/BL-003-firebase-auth   Day 3   ✓ MERGED
-├── feature/BL-004-layout          Day 4   ✓ MERGED
-├── feature/BL-005-askia-backend   Day 5   ← NEXT
-├── feature/BL-006-askia-chat-ui   Day 6
-├── feature/BL-006-flashcards      Day 7
-├── feature/BL-007-quiz            Day 8
-├── feature/BL-008-dashboard       Day 9
-├── feature/BL-009-docker          Day 10
-├── feature/BL-010-cicd-tests      Day 11
-└── feature/BL-011-docs-deploy     Day 12
+├── feature/BL-001-project-setup   Day 1    ✓ MERGED
+├── feature/BL-002-ui-components   Day 2    ✓ MERGED
+├── feature/BL-003-firebase-auth   Day 3    ✓ MERGED
+├── feature/BL-004-layout          Day 4    ✓ MERGED
+├── feature/BL-005-askia-backend   Day 5    ✓ MERGED
+├── feature/BL-006-askia-chat-ui   Day 6    ✓ MERGED
+├── feature/BL-007-flashcards      Day 7    ✓ MERGED
+├── feature/BL-008-quiz            Day 8    ← PUSH + MERGE
+├── feature/BL-009-dashboard       Day 9
+├── feature/BL-010-docker          Day 10
+├── feature/BL-011-polish          Day 11
+└── feature/BL-012-docs-deploy     Day 12
 ```
 
 Commit format: `feat(scope): description` — see global CLAUDE.md for full standards.
@@ -399,7 +401,11 @@ Commit format: `feat(scope): description` — see global CLAUDE.md for full stan
 | 2026-03-25 | UI component library (Button, Card, Input, Badge, Modal), Button tests, `BL-002` merged | Firebase Auth |
 | 2026-03-26 | Firebase Auth, forgot password, CI/CD (GitHub Actions), Docker, auth tests, `BL-003` merged | Layout + auth guard |
 | 2026-03-26-27 | Dashboard layout, auth guard, Sidebar, Header, PageWrapper, root redirect, Tailwind/font CSS fix, `BL-004` merged | Askia backend |
+| 2026-03-27 | Askia backend — chat models, streaming API, Firestore conversations, `BL-005` merged | Chat UI |
+| 2026-03-27-28 | Chat UI + mobile nav — ChatWindow, MessageBubble, ChatInput, StreamingIndicator, useChat, MobileNav, `BL-006` merged | Flashcards |
+| 2026-03-30 | Flashcards — models, repository, AI generation, FlashcardFlip, FlashcardDeck, useFlashcards, mobile responsive, Firestore fix (client-side sort), `BL-007` merged | Quiz |
+| 2026-03-31 | Quiz mode — models, repository, AI generation, QuizQuestion, QuizResults, useQuiz (state machine + localStorage persistence), `BL-008` pending push | Dashboard |
 
 ---
 
-*Last updated: 2026-03-24 — Built with Claude Code (claude-sonnet-4-6)*
+*Last updated: 2026-03-26 — Built with Claude Code (claude-sonnet-4-6)*
