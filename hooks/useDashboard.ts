@@ -17,18 +17,14 @@ interface DashboardData {
 }
 
 export function useDashboard(): DashboardData {
-  const { user } = useAuth()
-  const [loading, setLoading]           = useState(true)
-  const [quizResults, setQuizResults]   = useState<QuizResult[]>([])
-  const [decks, setDecks]               = useState<Deck[]>([])
+  const { user, loading: authLoading } = useAuth()
+  const [quizResults, setQuizResults] = useState<QuizResult[]>([])
+  const [decks, setDecks]             = useState<Deck[]>([])
+  const [fetched, setFetched]         = useState(false)
 
   useEffect(() => {
-    if (!user) {
-      setLoading(false)
-      return
-    }
+    if (authLoading || !user) return
 
-    setLoading(true)
     Promise.all([
       getUserQuizResults(user.uid),
       getUserDecks(user.uid),
@@ -37,9 +33,12 @@ export function useDashboard(): DashboardData {
         setQuizResults(results)
         setDecks(userDecks)
       })
-      .catch(() => { /* non-fatal — stats just show zeros */ })
-      .finally(() => setLoading(false))
-  }, [user])
+      .catch(() => { /* non-fatal — stats show zeros */ })
+      .finally(() => setFetched(true))
+  }, [user, authLoading])
+
+  // loading while auth resolves, or while we have a user but haven't fetched yet
+  const loading = authLoading || (!!user && !fetched)
 
   const bestScore = quizResults.length > 0
     ? Math.max(...quizResults.map(r => Math.round((r.score / r.total) * 100)))
