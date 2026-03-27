@@ -1,8 +1,8 @@
-# Stage 1: Install production dependencies
+# Stage 1: Install all dependencies (dev + prod needed for Next.js build)
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+RUN npm ci
 
 # Stage 2: Build the application
 FROM node:20-alpine AS builder
