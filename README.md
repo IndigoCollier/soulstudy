@@ -5,6 +5,16 @@
 
 AI-powered study companion for Sterile Processing Technician (SPD) certification prep. Built with Next.js and powered by Claude — featuring streaming chat with Askia (your AI study guide), flashcard decks, adaptive quizzes, and a personal dashboard that tracks your progress.
 
+## Screenshots
+
+| Dashboard | Chat with Askia |
+|---|---|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Chat](docs/screenshots/chat.png) |
+
+| Quiz | Flashcards |
+|---|---|
+| ![Quiz](docs/screenshots/quiz.png) | ![Flashcards](docs/screenshots/flashcards.png) |
+
 ## Tech Stack
 
 | Layer | Technology |
