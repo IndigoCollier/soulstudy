@@ -1,8 +1,23 @@
 # SoulStudy
 
 ![CI](https://github.com/IndigoCollier/soulstudy/actions/workflows/ci.yml/badge.svg)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://soulstudy.vercel.app)
 
 AI-powered study companion for Sterile Processing Technician (SPD) certification prep. Built with Next.js and powered by Claude — featuring streaming chat with Askia (your AI study guide), flashcard decks, adaptive quizzes, and a personal dashboard that tracks your progress.
+
+## Screenshots
+
+| Dashboard (Dark) | Dashboard (Light) |
+|---|---|
+| ![Dashboard Dark](docs/screenshots/dashboard-dark-mode.png) | ![Dashboard Light](docs/screenshots/dashboard-light-mode.png) |
+
+| Chat with Askia | Quiz |
+|---|---|
+| ![Chat](docs/screenshots/chat.png) | ![Quiz](docs/screenshots/quiz.png) |
+
+| Flashcards | |
+|---|---|
+| ![Flashcards](docs/screenshots/flashcards.png) | |
 
 ## Tech Stack
 
@@ -113,6 +128,10 @@ docker run -p 3000:3000 \
 ```
 
 The Dockerfile uses a three-stage build: `deps` → `builder` → `runner` (Alpine-based, non-root user, Next.js standalone output).
+
+## Live Demo
+
+[https://soulstudy.vercel.app](https://soulstudy.vercel.app)
 
 ## Deployment (Vercel)
 
