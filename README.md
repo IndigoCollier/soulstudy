@@ -7,13 +7,17 @@ AI-powered study companion for Sterile Processing Technician (SPD) certification
 
 ## Screenshots
 
-| Dashboard | Chat with Askia |
+| Dashboard (Dark) | Dashboard (Light) |
 |---|---|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Chat](docs/screenshots/chat.png) |
+| ![Dashboard Dark](docs/screenshots/dashboard-dark-mode.png) | ![Dashboard Light](docs/screenshots/dashboard-light-mode.png) |
 
-| Quiz | Flashcards |
+| Chat with Askia | Quiz |
 |---|---|
-| ![Quiz](docs/screenshots/quiz.png) | ![Flashcards](docs/screenshots/flashcards.png) |
+| ![Chat](docs/screenshots/chat.png) | ![Quiz](docs/screenshots/quiz.png) |
+
+| Flashcards | |
+|---|---|
+| ![Flashcards](docs/screenshots/flashcards.png) | |
 
 ## Tech Stack
 
